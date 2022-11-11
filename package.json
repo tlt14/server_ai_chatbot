@@ -1,0 +1,24 @@
+{
+  "name": "nodejs_server_chatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon --inspect ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "download": "^8.0.0",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "zingmp3-api-full": "^1.0.14"
+  }
+}
