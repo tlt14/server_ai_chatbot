@@ -8,6 +8,9 @@ const path = require('path')
 const sgMail = require('@sendgrid/mail')
 const { ZingMp3 } = require('zingmp3-api-full')
 const download = require('download')
+const mongodb = require('./app/config/db')
+const route = require('./routers/index')
+
 app.use(cookieParser())
 
 // app.use
@@ -49,10 +52,10 @@ app.get('/searchSong/:search', (req, res) => {
 app.post('/mail', (req, res) => {
   console.log(req.body)
   const { email, otp } = req.body
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  sgMail.setApiKey(process.env.API_KEY)
   const msg = {
     to: email, // Change to your recipient
-    from: 'thailamtruong2001@gmail.com', // Change to your verified sender
+    from: 'thailamtruong05@gmail.com', // Change to your verified sender
     subject: 'Chat_bot OTP',
     text: otp,
     html: otp,
@@ -66,5 +69,12 @@ app.post('/mail', (req, res) => {
       res.status(400).json(error)
     })
 })
+
+mongodb.connect()
+app.post('/register', (req, res) => {
+  const { email, pass } = req.body
+})
+
+route(app)
 
 app.listen(4000, () => console.log(`Example app listening on port ${4000}!`))
