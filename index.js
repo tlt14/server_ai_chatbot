@@ -28,25 +28,10 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.get('/searchSong/:search', (req, res) => {
-  const { search } = req.params
-  ZingMp3.search(search).then((data) => {
-    const { encodeId } = data.data.songs[0]
-    ZingMp3.getSong(encodeId).then((data) => {
-      const file = Object.values(data.data)[0]
-      const tmp = file
-      const tmp1 = tmp.substr(0, tmp.indexOf('?'))
-      console.log(tmp)
-      const filename = tmp1.substr(tmp1.lastIndexOf('/') + 1, tmp1.length)
-      // const file = 'GFG.jpeg';
-      // Path at which image will get downloaded
-      const filePath = `${__dirname}/uploads`
-
-      download(file, filePath).then(() => {
-        // res.json({ data: filePath + file })
-        res.json({ data: filename + '.mp3' })
-      })
+  const { key } = req.params
+    ZingMp3.search(key).then((data) => {
+      res.status(200).json(data)
     })
-  })
 })
 
 app.post('/mail', (req, res) => {
