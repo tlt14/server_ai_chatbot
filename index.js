@@ -27,7 +27,7 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
-app.get('/searchSong/:search', (req, res) => {
+app.get('/searchSong/:key', (req, res) => {
   const { key } = req.params
     ZingMp3.search(key).then((data) => {
       res.status(200).json(data)
