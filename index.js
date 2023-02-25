@@ -7,8 +7,8 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 const sgMail = require('@sendgrid/mail')
 const { ZingMp3 } = require('zingmp3-api-full')
-const download = require('download')
-const mongodb = require('./app/config/db')
+// const download = require('download')
+// const mongodb = require('./app/config/db')
 const route = require('./routers/index')
 
 app.use(cookieParser())
@@ -34,31 +34,7 @@ app.get('/searchSong/:search', (req, res) => {
     })
 })
 
-app.post('/mail', (req, res) => {
-  console.log(req.body)
-  const { email, otp } = req.body
-  sgMail.setApiKey(process.env.API_KEY)
-  const msg = {
-    to: email, // Change to your recipient
-    from: 'thailamtruong05@gmail.com', // Change to your verified sender
-    subject: 'Chat_bot OTP',
-    text: otp,
-    html: otp,
-  }
-  sgMail
-    .send(msg)
-    .then(() => {
-      res.status(200).json({ success: true })
-    })
-    .catch((error) => {
-      res.status(400).json(error)
-    })
-})
 
-mongodb.connect()
-app.post('/register', (req, res) => {
-  const { email, pass } = req.body
-})
 
 route(app)
 
