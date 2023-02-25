@@ -33,6 +33,20 @@ app.get('/searchSong/:key', (req, res) => {
       res.status(200).json(data?.data.top)
     }).catch((error)=>res.json(error))
 })
+app.get('/getSong/:id', (req, res, next) => {
+  const { id } = req.params
+  ZingMp3.getSong(id).then((data) => {
+//     console.log(data)
+    res.json(data)
+  })
+}),
+app.get('/getInfo/:id', (req, res) => {
+  const { id } = req.params
+  ZingMp3.getInfoSong(id).then((data) => {
+//     console.log(data)
+    res.json(data)
+  })
+})
 
 
 
