@@ -5,11 +5,11 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
-const sgMail = require('@sendgrid/mail')
+// const sgMail = require('@sendgrid/mail')
 const { ZingMp3 } = require('zingmp3-api-full')
 // const download = require('download')
 // const mongodb = require('./app/config/db')
-const route = require('./routers/index')
+// const route = require('./routers/index')
 
 app.use(cookieParser())
 
@@ -36,6 +36,6 @@ app.get('/searchSong/:search', (req, res) => {
 
 
 
-route(app)
+// route(app)
 
 app.listen(4000, () => console.log(`Example app listening on port ${4000}!`))
